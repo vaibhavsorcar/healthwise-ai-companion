@@ -1,7 +1,7 @@
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Heart, ArrowRight } from 'lucide-react';
@@ -9,15 +9,13 @@ import * as THREE from 'three';
 
 const HeroSphere = () => {
   return (
-    <Sphere visible args={[2, 100, 100]} position={[0, 0, 0]}>
-      <MeshDistortMaterial 
+    <mesh position={[0, 0, 0]}>
+      <sphereGeometry args={[2, 64, 64]} />
+      <meshStandardMaterial 
         color="#4A90E2" 
-        attach="material" 
-        distort={0.5} 
-        speed={2.5} 
         roughness={0.2}
       />
-    </Sphere>
+    </mesh>
   );
 };
 
@@ -64,12 +62,14 @@ const Hero = () => {
         
         <div className="relative h-[400px] md:h-[500px] z-10">
           <Suspense fallback={<div className="h-full w-full flex items-center justify-center">Loading 3D Model...</div>}>
-            <Canvas style={{ width: '100%', height: '100%' }}>
-              <ambientLight intensity={0.6} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              <HeroSphere />
-              <OrbitControls enableZoom={false} enablePan={false} />
-            </Canvas>
+            <div style={{ width: '100%', height: '100%' }}>
+              <Canvas>
+                <ambientLight intensity={0.6} />
+                <directionalLight position={[10, 10, 5]} intensity={1} />
+                <HeroSphere />
+                <OrbitControls enableZoom={false} enablePan={false} autoRotate />
+              </Canvas>
+            </div>
           </Suspense>
         </div>
       </div>
