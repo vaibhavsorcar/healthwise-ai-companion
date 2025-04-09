@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import * as THREE from 'three';
 
 const AnimatedSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -14,7 +15,7 @@ const AnimatedSphere = () => {
   });
 
   return (
-    <Sphere args={[1.5, 100, 100]} ref={meshRef} position={[0, 0, 0]}>
+    <Sphere visible args={[1.5, 100, 100]} ref={meshRef} position={[0, 0, 0]}>
       <MeshDistortMaterial 
         color="#4A90E2" 
         attach="material" 
@@ -28,7 +29,7 @@ const AnimatedSphere = () => {
 
 const ThreeDModel = () => {
   return (
-    <Canvas className="w-full h-full">
+    <Canvas style={{ width: '100%', height: '100%' }}>
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
       <AnimatedSphere />

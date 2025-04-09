@@ -10,7 +10,7 @@ const Chat = () => {
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-20">
+      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
         <ThreeDModel />
       </div>
       
